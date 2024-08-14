@@ -16,13 +16,15 @@
 						<a href="#"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR USUARIO</a>
 					</li>
 				</ul>
-			<div class="container-fluid">
-				<div class="table-responsive">
-					<table class="table table-dark table-sm">
+				<div class="row mt">
+                  <div class="col-md-12">
+                      <div class="content-panel">
+                          <table class="table table-striped table-advance table-hover">
 						<thead>
 							<tr class="text-center roboto-medium">
 								<th>ROL</th>
-								<th>CÓDIGO</th>
+								<th>CÓDIGO Usuario</th>
+								<th>CASA (si es residente)</th>
 								<th>NOMBRES</th>
 								<th>APELLIDOS</th>
 								<th>FECHA DE NACIMIENTO</th>
@@ -36,9 +38,10 @@
 						</thead>
 						<tbody>
 							<?php foreach ($users as $user) : ?>
-								<tr class="text-center" >
+								<tr>
 									<td><?php echo $user->getRolName(); ?></td>
 									<td><?php echo $user->getUserCode(); ?></td>
+									<td><?php echo $user->getHouseName(); ?></td>
 									<td><?php echo $user->getUserName(); ?></td>
 									<td><?php echo $user->getUserLastName(); ?></td>
 									<td><?php echo $user->getUserBirthday(); ?></td>
@@ -47,13 +50,13 @@
 									<td><?php echo $user->getUserPhone(); ?></td>
 									<td><?php echo $state[$user->getUserState()]; ?></td>
 									<td>
-										<a href="?c=Users&a=userUpdate&idUser=<?php echo $user->getUserCode(); ?>" class="btn btn-success">
-											<i class="fas fa-sync-alt"></i>
+										<a href="?c=Users&a=userUpdate&idUser=<?php echo $user->getUserCode(); ?>" class="btn btn-primary btn-xs">
+											<i class="fa fa-pencil"></i>
 										</a>
 									</td>
 									<td>
-										<a href="?c=Users&a=userDelete&idUser=<?php echo $user->getUserCode(); ?>" class="btn btn-warning">
-											<i class="far fa-trash-alt"></i>
+										<a href="?c=Users&a=userDelete&idUser=<?php echo $user->getUserCode(); ?>" class="btn btn-danger btn-xs">
+											<i class="fa fa-trash-o"></i>
 										</a>
 									</td>
 								</tr>
@@ -61,17 +64,4 @@
 						</tbody>
 					</table>
 				</div>
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item disabled">
-							<a class="page-link" href="#" tabindex="-1">Previous</a>
-						</li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item">
-							<a class="page-link" href="#">Next</a>
-						</li>
-					</ul>
-				</nav>
 			</div>

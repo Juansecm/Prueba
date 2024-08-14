@@ -9,6 +9,7 @@
 
     <link href="assets/dashboard/css/bootstrap.css" rel="stylesheet">
     <link href="assets/dashboard/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/dashboard/css/all.css">
     <link rel="stylesheet" type="text/css" href="assets/dashboard/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="assets/dashboard/js/gritter/css/jquery.gritter.css" />
     <link rel="stylesheet" type="text/css" href="assets/dashboard/lineicons/style.css">    
@@ -64,7 +65,17 @@
                           <li> <a href="rol.update.view.php">Actualizar Rol</a></li>
                       </ul>
                   </li>
-
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Casas</span>
+                      </a>
+                      <ul class="sub">
+                          <li> <a href="?c=Users&a=houseCreate">Agregar casa</a></li>
+                          <li> <a href="?c=Users&a=houseRead">Buscar casa</a></li>
+                          <li> <a href="house.update.view.php">Actualizar casa</a></li>
+                      </ul>
+                  </li>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-cogs"></i>
@@ -105,7 +116,7 @@
                       <ul class="sub">
                           <li> <a href="?c=Places&a=placeCreate">Agregar lugar</a></li>
                             <li> <a href="">Buscar lugar</a></li>
-                                <li> <a href="house.update.view.php">Actualizar consular lugar</a></li>
+                                <li> <a href="">Actualizar consular lugar</a></li>
                       </ul>
                   </li>
                   </li>

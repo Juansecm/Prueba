@@ -25,7 +25,7 @@
 						<div class="container-fluid">
 							<div class="row">
 							<div class="form-group">
-                <label for="nombrecategory">Nombre de lugar</label>
+                <label for="Placename">Nombre de lugar</label>
                 <input type="text" class="form-control" name="place_name" id="place_name" maxlength="40">
             	</div>
 							</div>

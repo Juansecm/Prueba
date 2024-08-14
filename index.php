@@ -16,26 +16,7 @@
             require_once "views/roles/admin/header.view.php";
             call_user_func(array($controller, $action));
             require_once "views/roles/admin/footer.view.php";  
-
-        if ($view === 'Landing' || $view === 'Login') {
-            require_once "views/company/header.view.php";
-            call_user_func(array($controller, $action));
-            require_once "views/company/footer.view.php";
-        } else {
-            require_once "views/roles/admin/header.view.php";
-            call_user_func(array($controller, $action));
-            require_once "views/roles/admin/footer.view.php";  
-        } 
-
-         if ($view === 'Landing' || $view === 'Login') {
-        require_once "views/company/header.view.php";
-        call_user_func(array($controller, $action));
-        require_once "views/company/footer.view.php";
-          } else {
-        require_once "views/roles/admin/header.view.php";
-        call_user_func(array($controller, $action));
-        require_once "views/roles/admin/footer.view.php";  
-} 
+ 
 }}
     ob_end_flush();
 ?>

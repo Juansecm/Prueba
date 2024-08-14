@@ -1,3 +1,5 @@
+
+
 <?php
     require_once "models/User.php";
     class Users{
@@ -51,17 +53,62 @@
             $rol->delete_rol($_GET['idRol']);
             header("Location: ?c=Users&a=rolRead");
         }
+        // Controlador Crear CASA
+        public function houseCreate(){
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                require_once "views/modules/users/house_create.view.php";
+            }
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $house = new User;
+                $house->setHouseName($_POST['house_name']);
+                $house->create_house();
+                header("Location: ?c=Users&a=houseRead");
+            }
+        }
+
+        // Controlador Consultar CASAS
+        public function houseRead(){
+            $houses = new User;
+            $houses = $houses->read_house();
+            require_once "views/modules/users/house_read.view.php";
+        }
+
+        // Controlador Actualizar casa
+        public function houseUpdate(){
+            if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+                $houseId = new User;
+                $houseId = $houseId->gethouse_bycode($_GET['idhouse']);
+                require_once "views/modules/users/house_update.view.php";
+            }
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $houseUpdate = new User;
+                $houseUpdate->setHouseCode($_POST['cod_house']);
+                $houseUpdate->setHouseName($_POST['house_name']);
+                $houseUpdate->update_house();
+                header("Location: ?c=Users&a=houseRead");
+            }
+        }
+
+        // Controlador Eliminar casa
+        public function houseDelete(){
+            $house = new User;
+            $house->delete_house($_GET['idhouse']);
+            header("Location: ?c=Users&a=houseRead");
+        }
         // Controlador Crear Usuario
         public function userCreate(){
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 $roles = new User;
                 $roles = $roles->read_roles();
+                $houses = new User;
+                $houses = $houses->read_house();
                 require_once "views/modules/users/user_create.view.php";
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $user = new User(
                     $_POST['cod_rol'],
                     null,
+                    $_POST['cod_house'],
                     $_POST['user_name'],
                     $_POST['user_lastname'],
                     $_POST['user_birthday'],
@@ -93,12 +140,15 @@
                 $roles = $roles->read_roles();
                 $user = new User;
                 $user = $user->getuser_bycode($_GET['idUser']);
+                $houses = new User;
+                $houses = $houses->read_house();
                 require_once "views/modules/users/user_update.view.php";
             }
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $userUpdate = new User(
                     $_POST['cod_rol'],
                     $_POST['user_code'],
+                    $_POST['house_code'],
                     $_POST['user_name'],
                     $_POST['user_lastname'],
                     $_POST['user_birthday'],
@@ -108,6 +158,7 @@
                     $_POST['user_phone'],
                     $_POST['user_state']
                 );
+                // print_r($userUpdate);
                 $userUpdate->update_user();
                 header("Location: ?c=Users&a=userRead");
             }
