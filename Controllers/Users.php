@@ -53,6 +53,7 @@
             $rol->delete_rol($_GET['idRol']);
             header("Location: ?c=Users&a=rolRead");
         }
+       
         // Controlador Crear CASA
         public function houseCreate(){
             if ($_SERVER['REQUEST_METHOD'] == 'GET') {

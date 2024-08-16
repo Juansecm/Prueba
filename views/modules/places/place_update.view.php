@@ -28,8 +28,8 @@
 								<div class="col-12 col-md-6">
                                 <input type="hidden" class="form-control" name="cod_place" id="cod_place" value="<?php echo $placeId->getPlaceCode();?>">
 									<div class="form-group">
-										<label for="Placename" class="bmd-label-floating">Nombre</label>
-										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="cod_place" id="cod_place" maxlength="40" value="<?php echo $placeId->getPlaceCode();?>">
+										<label for="Placename" class="bmd-label-floating">Nombre lugar</label>
+										<input type="text" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{1,40}" class="form-control" name="place_name" id="place_name" maxlength="40" value="<?php echo $placeId->getPlaceName();?>">
 									</div>
 								</div>
 							</div>
