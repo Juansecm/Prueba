@@ -45,9 +45,29 @@ class Bookings
     // Controlador Consultar Usuarios
     public function bookingRead()
     {
-        $bookings = new Booking;
-        $bookings = $bookings->read_booking();
-        require_once "views/modules/bookings/booking_read.view.php";
+        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $booking = new Booking;
+            $booking = $booking->read_booking();
+            $users = new User;
+            $users = $users->read_users();
+            $places = new Place;
+            $places = $places->read_place();
+            require_once "views/modules/bookings/booking_read.view.php";
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $booking = new Booking(
+                $_POST['booking_date'],
+                null,
+                $_POST['cod_user'],
+                $_POST['user_id'],
+                $_POST['user_name'],
+                $_POST['user_lastname'],
+                $_POST['cod_place'],
+                $_POST['place_name']
+            );
+            $booking->create_booking();
+            header("Location: ?c=Bookings&a=bookingRead");
+        }
     }
 
     // Controlador Actualizar Usuario
