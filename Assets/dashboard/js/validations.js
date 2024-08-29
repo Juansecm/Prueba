@@ -17,11 +17,37 @@ hacerClic.addEventListener('click', function (event) {
 
 function validar_house() {
     house_name = document.getElementById('house_name').value;
+    // Expresión Regular de Texto
+    let patron_texto = /^[ a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñÑ]+$/;
+    //Validacion casa
     event.preventDefault();
     if (house_name === "") {
         swal({
             title: "Verifique el campo Nombre de la Casa",
             text: "El Nombre de la Casa NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('house_name').focus();
+            });
+
+    } else if (!patron_texto.test(house_name)) {
+        event.preventDefault();
+        swal({
+            title: "Verifique el campo casa",
+            text: "La casa NO pueden contener números o caracteres especiales",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('house_name').focus();
+            });
+    } else if (house_name.length < 5 || house_name.length > 20) {
+        event.preventDefault();
+        swal({
+            title: "Verifique el campo casa",
+            text: "La casa NO debe contener entre 5 y 20 caracteres",
             icon: "error",
             button: "Aceptar",
         })
@@ -69,7 +95,7 @@ function validar_rol() {
             .then((value) => {
                 document.getElementById('rol_name').focus();
             });
-    } else if (rol_name.length < 5 || nombres.length > 20) {
+    } else if (rol_name.length < 5 || rol_name.length > 20) {
         event.preventDefault();
         swal({
             title: "Verifique el campo roles",
@@ -97,6 +123,9 @@ function validar_rol() {
 
 function validar_place() {
     place_name = document.getElementById('place_name').value;
+    // Expresión Regular de Texto
+    let patron_texto = /^[ a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñÑ]+$/;
+    //Validacion lugar
     event.preventDefault();
     if (place_name === "") {
         swal({
@@ -108,7 +137,31 @@ function validar_place() {
             .then((value) => {
                 document.getElementById('place_name').focus();
             });
-    } else {
+
+    } else if (!patron_texto.test(place_name)) {
+        event.preventDefault();
+        swal({
+            title: "Verifique el campo lugar",
+            text: "El lugar NO pueden contener números o caracteres especiales",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('place_name').focus();
+            });
+    } else if (place_name.length < 3 || place_name.length > 20) {
+        event.preventDefault();
+        swal({
+            title: "Verifique el campo roles",
+            text: "El rol debe contener entre 3 y 20 caracteres",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('place_name').focus();
+            });
+    }
+    else {
         swal({
             title: "Nuevo Lugar Creado",
             text: "El lugar se ha creado con éxito",
@@ -136,7 +189,7 @@ function validar_user() {
                 document.getElementById('cod_rol').focus();
             });
     }
-    else if (cod_rol === "???") {
+    else if (cod_rol === "") {
         swal({
             title: "Verifique el campo Rol",
             text: "El Rol NO puede estar vacío",
