@@ -178,6 +178,23 @@ function validar_place() {
 function validar_user() {
     event.preventDefault();
     cod_rol = document.getElementById('cod_rol').value;
+    cod_house = document.getElementById('cod_house').value;
+    user_state = document.getElementById('user_state').value;
+    user_name = document.getElementById('user_name').value;
+    user_lastname = document.getElementById('user_lastname').value;
+    user_birthday = document.getElementById('user_birthday').value;
+    user_id = document.getElementById('user_id').value;
+    user_email = document.getElementById('user_email').value;
+    user_pass = document.getElementById('user_pass').value;
+    user_pass_conf = document.getElementById('user_pass_conf').value;
+    user_phone = document.getElementById('user_phone').value;
+    // Expresión Regular de correo electrónico
+    let patron_correo = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+    // Expresión Regular de Texto
+    let patron_texto = /^[ a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñÑ]+$/;
+    //Expresión regular númerico
+    let patron_numerico = /^[0-9]+$/;
+
     if (cod_rol === "") {
         swal({
             title: "Verifique el campo Rol",
@@ -200,6 +217,94 @@ function validar_user() {
                 document.getElementById('cod_rol').focus();
             });
     }
+    else if (cod_house === "") {
+        swal({
+            title: "Verifique el campo Nombre de la Casa",
+            text: "El Nombre de la Casa NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('cod_house').focus();
+            });
+    }
+    else if (cod_house === "") {
+        swal({
+            title: "Verifique el campo Nombre de la Casa",
+            text: "El Nombre de la Casa NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('cod_house').focus();
+            });
+    }
+    else if (user_name === "") {
+        swal({
+            title: "Verifique el campo Nombre",
+            text: "El Nombre NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_name').focus();
+            });
+    }
+    else if (user_name.length < 2 || user_name.length > 50) {
+        swal({
+            title: "Verifique el campo Nombres",
+            text: "Los Nombres deben contener entre 2 y 50 caracteres",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_name').focus();
+            });
+    }
+    else if (!patron_texto.test(user_name)) {
+        swal({
+            title: "Verifique el campo Nombres",
+            text: "Los Nombres NO pueden contener números o caracteres especiales",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_name').focus();
+            });
+    }
+    else if (user_lastname === "") {
+        swal({
+            title: "Verifique el campo Apellidos",
+            text: "Los apellidos NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_lastname').focus();
+            });
+    }
+    else if (user_lastname.length < 2 || user_lastname.length > 50) {
+        swal({
+            title: "Verifique el campo Apellidos",
+            text: "Los Nombres deben contener entre 2 y 50 caracteres",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_lastname').focus();
+            });
+    }
+    else if (!patron_texto.test(user_lastname)) {
+        swal({
+            title: "Verifique el campo Apellidos",
+            text: "Los Apellidos NO pueden contener números o caracteres especiales",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_lastname').focus();
+            });
+    }
     else {
         swal({
             title: "El Usuario ha sido Creado",
@@ -219,6 +324,9 @@ function validar_booking() {
     booking_date = document.getElementById('booking_date').value;
     cod_place = document.getElementById('cod_place').value;
     cod_user = document.getElementById('cod_user').value;
+    //Patron validacio  texto
+    let patron_numerico = /^[0-9]+$/;
+
     if (booking_date === "") {
         swal({
             title: "Verifique el campo fecha",
@@ -245,6 +353,28 @@ function validar_booking() {
         swal({
             title: "Verifique el campo usuario",
             text: "El usuario NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('cod_user').focus();
+            });
+    } else if (!patron_numerico.test(cod_user)) {
+        event.preventDefault();
+        swal({
+            title: "Verifique el campo codigo de usuario",
+            text: "El codigo NO pueden contener letras o caracteres especiales",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('cod_user').focus();
+            });
+    } else if (cod_user.length < 1 || cod_user.length > 3) {
+        event.preventDefault();
+        swal({
+            title: "Verifique el campo codigo de usuario",
+            text: "El codigo debe contener entre 1 y 3 caracteres",
             icon: "error",
             button: "Aceptar",
         })
