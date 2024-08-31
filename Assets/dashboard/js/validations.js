@@ -1,4 +1,4 @@
-//Funcion de casas
+// inicio de las  alertas principales 
 hacerClic = document.getElementById("container");
 hacerClic.addEventListener('click', function (event) {
     id = event.target.getAttribute("id");
@@ -239,6 +239,28 @@ function validar_user() {
                 document.getElementById('cod_house').focus();
             });
     }
+    else if (user_state === "") {
+        swal({
+            title: "Verifique el campo estado",
+            text: "El estado NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_state').focus();
+            });
+    }
+    else if (user_state === "") {
+        swal({
+            title: "Verifique el campo del estado",
+            text: "El estado NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_state').focus();
+            });
+    }
     else if (user_name === "") {
         swal({
             title: "Verifique el campo Nombre",
@@ -303,6 +325,138 @@ function validar_user() {
         })
             .then((value) => {
                 document.getElementById('user_lastname').focus();
+            });
+    }
+    else if (user_birthday === "") {
+        swal({
+            title: "Verifique el campo Fecha",
+            text: "La fecha NO puede estar vacía",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_birthday').focus();
+            });
+    }
+    else if (user_id === "") {
+        swal({
+            title: "Verifique el campo Identificación",
+            text: "La Identificación NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_id').focus();
+            });
+    }
+    else if (user_id.length < 5 || user_id.length > 20) {
+        swal({
+            title: "Verifique el campo Identificación",
+            text: "La identificación debe contener entre 5 y 20 caracteres",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_id').focus();
+            });
+    }
+    else if (!patron_numerico.test(user_id)) {
+        swal({
+            title: "Verifique el campo identificación",
+            text: "La identificación NO pueden contener letras o caracteres especiales",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_id').focus();
+            });
+    }
+    else if (user_email === "") {
+        swal({
+            title: "Verifique el campo correo",
+            text: "El correo NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_email').focus();
+            });
+    }
+    else if (user_email.length < 5 || user_email.length > 20) {
+        swal({
+            title: "Verifique el campo correo",
+            text: "Recuerda que el correo debe ser el tal cual se registro",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_email').focus();
+            });
+    }
+    else if (!patron_correo.test(user_email)) {
+        swal({
+            title: "Verifique el campo correo",
+            text: "Recuerda que el correo debe ir con @ y .com",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_email').focus();
+            });
+    }
+    else if (user_pass === "") {
+        swal({
+            title: "Verifique el campo contraseña",
+            text: "El contraseña NO puede estar vacía",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_pass').focus();
+            });
+    }
+    else if (user_pass !== user_pass_conf) {
+        swal({
+            title: "Verifique el campo contraseña",
+            text: "Las contraseñas no son iguales",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_pass_conf').focus();
+            });
+    }
+    else if (user_phone === "") {
+        swal({
+            title: "Verifique el campo telefono",
+            text: "La telefono NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_phone').focus();
+            });
+    }
+    else if (user_phone.length < 5 || user_phone.length > 20) {
+        swal({
+            title: "Verifique el campo telefono",
+            text: "Los telefono debe contener entre 5 y 10 caracteres",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_phone').focus();
+            });
+    }
+    else if (!patron_numerico.test(user_phone)) {
+        swal({
+            title: "Verifique el campo telefono",
+            text: "El telefono NO pueden contener letras o caracteres especiales, fijos 601",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('user_phone').focus();
             });
     }
     else {
@@ -394,3 +548,81 @@ function validar_booking() {
         });
     }
 }
+// fin de las  alertas principales
+
+//inicio de las alertas de actualizar y eliminar
+
+
+
+
+//fin de las alertas de actualizar y eliminar 
+
+
+
+
+//inicio de las alertas para actualizar los campos
+
+// inicio de las  alertas principales 
+hacerClic = document.getElementById("container");
+hacerClic.addEventListener('click', function (event) {
+    id = event.target.getAttribute("id");
+    if (id === "submit-update-rol") {
+        validar_update_rol();
+    }
+});
+
+function validar_update_rol() {
+    rol_update_name = document.getElementById('rol_update_name').value;
+    event.preventDefault();
+    // Expresión Regular de Texto
+    let patron_texto = /^[ a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñÑ]+$/;
+    //Validacion Rol
+    if (rol_update_name === "") {
+        swal({
+            title: "Verifique el campo Nombre del rol",
+            text: "El Nombre del rol NO puede estar vacío",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('rol_update_name').focus();
+            });
+
+    } else if (!patron_texto.test(rol_update_name)) {
+        event.preventDefault();
+        swal({
+            title: "Verifique el campo roles",
+            text: "El rol NO pueden contener números o caracteres especiales",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('rol_update_name').focus();
+            });
+    } else if (rol_update_name.length < 5 || rol_update_name.length > 20) {
+        event.preventDefault();
+        swal({
+            title: "Verifique el campo roles",
+            text: "El rol debe contener entre 5 y 20 caracteres",
+            icon: "error",
+            button: "Aceptar",
+        })
+            .then((value) => {
+                document.getElementById('rol_update_name').focus();
+            });
+    }
+    else {
+        swal({
+            title: "rol actualizado",
+            text: "el rol se ha actualizado con éxito",
+            icon: "success",
+            button: "Aceptar",
+        }).then((result) => {
+            if (result) {
+                document.form_update_rol.submit();
+            }
+        });
+    }
+}
+
+//fin de las alertas para actualizar los campos
