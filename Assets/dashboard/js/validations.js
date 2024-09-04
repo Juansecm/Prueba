@@ -609,17 +609,6 @@ function validar_update_house() {
             .then((value) => {
                 document.getElementById('house_name_update').focus();
             });
-    } else if (house_name_update !== "house_name_update") {
-        swal({
-            title: "Actualización de la casa",
-            text: "¿Esta seguro de realizar esta acción?",
-            icon: "warning",
-            buttons: ["Cancelar", "Aceptar"],
-        }).then((result) => {
-            if (result) {
-                document.form_update_house.submit();
-            }
-        });
     }
     else {
         swal({
@@ -675,17 +664,6 @@ function validar_update_rol() {
             .then((value) => {
                 document.getElementById('rol_name_update').focus();
             });
-    } else if (rol_update_name !== "rol_name_update") {
-        swal({
-            title: "Actualización de rol",
-            text: "¿Esta seguro de realizar esta acción?",
-            icon: "warning",
-            buttons: ["Cancelar", "Aceptar"],
-        }).then((result) => {
-            if (result) {
-                document.form_update_rol.submit();
-            }
-        });
     }
     else {
         swal({
@@ -727,17 +705,6 @@ function validar_update_place() {
             button: "Aceptar",
         }).then((value) => {
             document.getElementById('place_update_name').focus();
-        });
-    } else if (place_update_name !== "place_name_update") {
-        swal({
-            title: "Actualización de lugar",
-            text: "¿Está seguro de realizar esta acción?",
-            icon: "warning",
-            buttons: ["Cancelar", "Aceptar"],
-        }).then((result) => {
-            if (result) {
-                document.form_update_place.submit();
-            }
         });
     } else {
         swal({
@@ -994,7 +961,7 @@ function validar_update_user() {
                 document.getElementById('user_pass_update').focus();
             });
     }
-    else if (user_pass !== user_pass_conf_update) {
+    else if (user_pass_update !== user_pass_conf_update) {
         swal({
             title: "Verifique el campo contraseña",
             text: "Las contraseñas no son iguales",
@@ -1016,7 +983,7 @@ function validar_update_user() {
                 document.getElementById('user_phone_update').focus();
             });
     }
-    else if (user_phone_update.length < 5 || user_phone_update.length > 20) {
+    else if (user_phone_update.length < 5 || user_phone_update.length > 10) {
         swal({
             title: "Verifique el campo telefono",
             text: "Los telefono debe contener entre 5 y 10 caracteres",
@@ -1040,10 +1007,10 @@ function validar_update_user() {
     }
     else {
         swal({
-            title: "Actualización de reserva",
-            text: "¿Está seguro de realizar esta acción?",
-            icon: "warning",
-            buttons: ["Cancelar", "Aceptar"],
+            title: "Actualización de usuario",
+            text: "El usuario se ha actualizado",
+            icon: "success",
+            button: "Aceptar",
         }).then((result) => {
             if (result) {
                 document.form_user_update.submit();
@@ -1116,9 +1083,9 @@ function validar_update_booking() {
     else {
         swal({
             title: "Actualización de reserva",
-            text: "¿Está seguro de realizar esta acción?",
-            icon: "warning",
-            buttons: ["Cancelar", "Aceptar"],
+            text: "Actualización exitosa",
+            icon: "success",
+            buttons: "Aceptar",
         }).then((result) => {
             if (result) {
                 document.form_booking_update.submit();
@@ -1130,20 +1097,30 @@ function validar_update_booking() {
 
 
 //fin de las alertas para actualizar los campos
-
-//Inicio alertas de eliminar
 hacerClic = document.getElementById("container");
 hacerClic.addEventListener('click', function (event) {
     id = event.target.getAttribute("id");
-    if (id === "submit-house-delete") {
+    if (id === "submit-house") {
         validar_house_delete();
-    } else if (id === "submit-rol-delete") {
-        validar_rol_delete();
-    } else if (id === "submit-place-delete") {
-        validar_place_delete();
-    } else if (id === "submit-user-delete") {
-        validar_user_delete();
-    } else if (id === "submit-booking-delete") {
-        validar_booking_delete();
     }
 });
+
+function validar_house_delete() {
+    document.querySelectorAll('.update-btc').forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (confirm('¿Está seguro de que desea actualizar este registro?')) {
+                // Perform update action
+            }
+        });
+    });
+
+    document.querySelectorAll('.delete-btc').forEach(btn => {
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (confirm('¿Está seguro de que desea eliminar este registro?')) {
+                // Perform delete action
+            }
+        });
+    });
+}
