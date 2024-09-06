@@ -17,42 +17,24 @@
         </li>
     </ul>
 </div>
-<div class="container-fluid">
-    <form action="" method="POST" class="form-neon" autocomplete="off" name="form_booking_update">
-        <fieldset>
-            <legend><i class="fas fa-user"></i> &nbsp; Agregar Reserva</legend>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="form-group">
-                        <label for="bookingDate">Fecha de la reserva:</label>
-                        <input type="date" class="form-control" name="booking_date" id="booking_update_date" maxlength="40">
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="cod_place" class="bmd-label-floating">Lugar</label>
-                            <select class="form-control" name="cod_place" id="cod_place">
-                                <option value="" selected="" disabled="">Seleccione una opción</option>
-                                <?php foreach ($places as $place) : ?>
-                                    <option value="<?php echo $place->getPlaceCode() ?>"><?php echo $place->getPlaceName() ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            <label for="cod_user" class="bmd-label-floating">Codigo de Usuario</label>
-                            <input type="text" class="form-control" name="cod_user" id="cod_user" placeholder="Ingrese su Codigo de usuario">
-                        </div>
-                    </div>
-                    <input type="hidden" name="booking_status" value="pending">
-                </div>
-            </div>
-        </fieldset>
-        <br><br><br>
-        <p class="text-center" style="margin-top: 40px;">
-            <button type="reset" class="btn btn-primary">Limpiar</button>
-            &nbsp; &nbsp;
-            <button type="submit" class="btn btn-primary" id="submit-update-booking">Actualizar Reserva</button>
-        </p>
-    </form>
-</div>
+			<div class="container-fluid">
+				<form action="" method="POST" class="form-neon" autocomplete="off">
+					<fieldset>
+						<legend><i class="far fa-address-card"></i> &nbsp; Actualizar RESERVA</legend>
+								<div class="col-12 col-md-6">
+                                <input type="hidden" class="form-control" name="booking_date" id="booking_date" value="<?php echo $bookingId->getBookingDate();?>">
+									<div class="form-group">
+                                        <label for="bookingDate">Fecha de la reserva:</label>
+                                        <input type="date" class="form-control" name="booking_date" id="booking_date" maxlength="40" value="<?php echo $booking->getBookingDate();?>">
+                                    </div>
+								</div>
+							</div>
+						</div>
+					</fieldset>					
+					<p class="text-center" style="margin-top: 40px;">
+						<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
+						&nbsp; &nbsp;
+						<button type="submit" class="btn btn-raised btn-info btn-sm"><i class="far fa-save"></i> &nbsp; ENVIAR</button>
+					</p>
+				</form>
+			</div>

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function validar_login() {
   var user_email = document.getElementById('user_email').value;
   var user_pass = document.getElementById('user_pass').value;
+  let patron_correo = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   event.preventDefault();
   if (user_email === "") {
     swal({
@@ -24,7 +25,29 @@ function validar_login() {
     }).then(() => {
       document.getElementById('user_email').focus();
     });
-  } else if (user_pass === "") {
+  } else if (!patron_correo.test(user_email)) {
+    swal({
+        title: "Verifique el campo correo",
+        text: "Recuerda que el correo debe ir con @ y .com",
+        icon: "error",
+        button: "Aceptar",
+    })
+        .then((value) => {
+            document.getElementById('user_email').focus();
+        });
+
+      
+}else if (user_email.length < 5 || user_email.length > 20) {
+  swal({
+      title: "Verifique el campo correo",
+      text: "el correo debe contener entre 5 a 20 caracteres",
+      icon: "error",
+      button: "Aceptar",
+  })
+      .then((value) => {
+          document.getElementById('user_email').focus();
+      });
+} else if (user_pass === "") {
     swal({
       title: "Verifique el campo contraseña",
       text: "La contraseña NO puede estar vacía",
@@ -45,4 +68,3 @@ function validar_login() {
     });
   }
 }
-

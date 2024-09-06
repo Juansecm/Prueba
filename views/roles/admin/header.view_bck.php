@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -10,14 +9,13 @@
 	<link rel="stylesheet" href="assets/dashboard/css/styles.css">
 
 </head>
-
 <body>
 
 	<!-- Main container -->
 	<main class="full-box main-container">
 
 		<!-- Nav lateral -->
-		<section class="full-box nav-lateral" id="container">
+		<section class="full-box nav-lateral">
 			<div class="full-box nav-lateral-bg show-nav-lateral"></div>
 			<div class="full-box nav-lateral-content">
 				<figure class="full-box nav-lateral-avatar">
@@ -35,14 +33,14 @@
 						</li>
 
 						<li>
-							<a href="#" class="nav-btn-submenu <?php echo $action == ('rolCreate' || 'rolRead') ? 'active' : '' ?> "><i class="fas fa-users fa-fw"></i> &nbsp; Roles <i class="fas fa-chevron-down"></i></a>
-							<ul class="<?php echo $action == ('rolCreate' || 'rolRead') ? 'show-nav-lateral-submenu' : '' ?>">
+							<a href="#" class="nav-btn-submenu <?php echo $action == ('rolCreate'|| 'rolRead') ? 'active' : '' ?> "><i class="fas fa-users fa-fw"></i> &nbsp; Roles <i class="fas fa-chevron-down"></i></a>
+							<ul class="<?php echo $action == ('rolCreate'|| 'rolRead') ? 'show-nav-lateral-submenu':''?>">
 								<li>
 									<!-- Etiqueta a, propiedad href="Se llama Controlador y Método" -->
-									<a class="<?php echo $action == 'rolCreate' ? 'background-btn-active' : '' ?>" href="?c=Users&a=rolCreate"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Rol</a>
+									<a class="<?php echo $action == 'rolCreate' ? 'background-btn-active' : ''?>" href="?c=Users&a=rolCreate"><i class="fas fa-plus fa-fw"></i> &nbsp; Agregar Rol</a>
 								</li>
 								<li>
-									<a class="<?php echo $action == 'rolRead' ? 'background-btn-active' : '' ?>" href="?c=Users&a=rolRead"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Consultar Roles</a>
+									<a class="<?php echo $action == 'rolRead' ? 'background-btn-active' : ''?>" href="?c=Users&a=rolRead"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; Consultar Roles</a>
 								</li>
 								<li>
 									<a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; Buscar Rol</a>

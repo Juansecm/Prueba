@@ -6,7 +6,7 @@
 				<p class="text-justify">
 				</p>
 			</div>
-
+			
 			<div class="container-fluid">
 				<ul class="full-box list-unstyled page-nav-tabs">
 					<li>
@@ -18,10 +18,10 @@
 					<li>
 						<a href="#"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR USUARIO</a>
 					</li>
-				</ul>
+				</ul>	
 			</div>
 			<div class="container-fluid">
-				<form action="" method="POST" class="form-neon" autocomplete="off" name="form_user_update">
+			<form action="" method="POST" class="form-neon" autocomplete="off" name="form_user_update">
 					<fieldset>
 						<legend><i class="far fa-address-card"></i> &nbsp; Actualizar Información personal</legend>
 						<div class="container-fluid">

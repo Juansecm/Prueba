@@ -20,7 +20,7 @@
 				</ul>
 			</div>
 			<div class="container-fluid">
-				<form action="" method="POST" class="form-neon" autocomplete="off" name="form_place_update">
+			<form action="" method="POST" class="form-neon" autocomplete="off" name="form_place_update">
 					<fieldset>
 						<legend><i class="fas fa-user"></i> &nbsp; Actualizar lugar</legend>
 						<div class="container-fluid">

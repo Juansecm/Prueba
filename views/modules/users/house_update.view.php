@@ -1,25 +1,25 @@
 <div class="full-box page-header">
-	<h3 class="text-left">
-		<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CASA
-	</h3>
+				<h3 class="text-left">
+					<i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CASA
+				</h3>
 
-</div>
+			</div>
 
-<div class="container-fluid">
-	<ul class="full-box list-unstyled page-nav-tabs">
-		<li>
-			<a class="active" href="?c=Users&a=houseCreate"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CASA</a>
-		</li>
-		<li>
-			<a href="?c=Users&a=houseRead"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CONSULTAR CASA</a>
-		</li>
-		<li>
-			<a href="#"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR CASA</a>
-		</li>
-	</ul>
-</div>
-<div class="container-fluid">
-	<form action="" method="POST" class="form-neon" autocomplete="off" id="form_update_house">
+			<div class="container-fluid">
+				<ul class="full-box list-unstyled page-nav-tabs">
+					<li>
+						<a class="active" href="?c=Users&a=houseCreate"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR CASA</a>
+					</li>
+					<li>
+						<a href="?c=Users&a=houseRead"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; CONSULTAR CASA</a>
+					</li>
+					<li>
+						<a href="#"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR CASA</a>
+					</li>
+				</ul>
+			</div>
+			<div class="container-fluid">
+			<form action="" method="POST" class="form-neon" autocomplete="off" id="form_house_update">
 		<fieldset>
 			<legend><i class="fas fa-user"></i> &nbsp; Actualizar Casa</legend>
 			<div class="container-fluid">
@@ -39,6 +39,6 @@
 			<button type="reset" class="btn btn-raised btn-secondary btn-sm"><i class="fas fa-paint-roller"></i> &nbsp; LIMPIAR</button>
 			&nbsp; &nbsp;
 			<button type="submit" class="btn btn-raised btn-info btn-sm" id="submit-update-house"><i class="far fa-save"></i> &nbsp; ACTUALIZAR</button>
-		</p>
-	</form>
-</div>
+					</p>
+				</form>
+			</div>

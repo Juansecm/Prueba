@@ -473,24 +473,45 @@ function validar_user() {
     }
 }
 
+// Establecer la fecha mínima para el input de fecha
+document.addEventListener('DOMContentLoaded', function () {
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById('booking_date').setAttribute('min', today);
+});
+
 function validar_booking() {
     event.preventDefault();
+
+    // Obtener valores de los campos
     booking_date = document.getElementById('booking_date').value;
     cod_place = document.getElementById('cod_place').value;
     cod_user = document.getElementById('cod_user').value;
-    //Patron validacio  texto
+
+    // Patron validacion numérica
     let patron_numerico = /^[0-9]+$/;
+
+    // Obtener fecha actual en formato YYYY-MM-DD
+    let today = new Date().toISOString().split('T')[0];
 
     if (booking_date === "") {
         swal({
             title: "Verifique el campo fecha",
-            text: "la fecha NO puede estar vacía",
+            text: "La fecha NO puede estar vacía",
             icon: "error",
             button: "Aceptar",
-        })
-            .then((value) => {
-                document.getElementById('booking_date').focus();
-            });
+        }).then(() => {
+            document.getElementById('booking_date').focus();
+        });
+    }
+    else if (booking_date < today) {
+        swal({
+            title: "Fecha no válida",
+            text: "No se puede seleccionar una fecha anterior a hoy",
+            icon: "error",
+            button: "Aceptar",
+        }).then(() => {
+            document.getElementById('booking_date').focus();
+        });
     }
     else if (cod_place === "") {
         swal({
@@ -498,10 +519,9 @@ function validar_booking() {
             text: "El lugar NO puede estar vacío",
             icon: "error",
             button: "Aceptar",
-        })
-            .then((value) => {
-                document.getElementById('cod_place').focus();
-            });
+        }).then(() => {
+            document.getElementById('cod_place').focus();
+        });
     }
     else if (cod_user === "") {
         swal({
@@ -509,36 +529,34 @@ function validar_booking() {
             text: "El usuario NO puede estar vacío",
             icon: "error",
             button: "Aceptar",
-        })
-            .then((value) => {
-                document.getElementById('cod_user').focus();
-            });
-    } else if (!patron_numerico.test(cod_user)) {
-        event.preventDefault();
+        }).then(() => {
+            document.getElementById('cod_user').focus();
+        });
+    }
+    else if (!patron_numerico.test(cod_user)) {
         swal({
             title: "Verifique el campo codigo de usuario",
             text: "El codigo NO pueden contener letras o caracteres especiales",
             icon: "error",
             button: "Aceptar",
-        })
-            .then((value) => {
-                document.getElementById('cod_user').focus();
-            });
-    } else if (cod_user.length < 1 || cod_user.length > 3) {
-        event.preventDefault();
+        }).then(() => {
+            document.getElementById('cod_user').focus();
+        });
+    }
+    else if (cod_user.length < 1 || cod_user.length > 3) {
         swal({
             title: "Verifique el campo codigo de usuario",
             text: "El codigo debe contener entre 1 y 3 caracteres",
             icon: "error",
             button: "Aceptar",
-        })
-            .then((value) => {
-                document.getElementById('cod_user').focus();
-            });
-    } else {
+        }).then(() => {
+            document.getElementById('cod_user').focus();
+        });
+    }
+    else {
         swal({
             title: "La reserva ha sido Creada",
-            text: "la reserva se ha creado con éxito",
+            text: "La reserva se ha creado con éxito",
             icon: "success",
             button: "Aceptar",
         }).then((result) => {
@@ -548,7 +566,17 @@ function validar_booking() {
         });
     }
 }
-// fin de las  alertas principales
+
+
+// fin de las  alertas principales 
+
+
+
+//******************************************************************************************************************************************************** *
+//******************************************************************************************************************************************************** *
+//******************************************************************************************************************************************************** *
+//******************************************************************************************************************************************************** *
+//******************************************************************************************************************************************************** *
 
 //inicio de las alertas de actualizar y eliminar
 
@@ -572,10 +600,11 @@ hacerClic.addEventListener('click', function (event) {
 //Funcion validación casa 
 function validar_update_house() {
     house_name_update = document.getElementById('house_name_update').value;
+
     // Expresión Regular de Texto
     let patron_texto = /^[ a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙñÑ]+$/;
     //Validacion casa
-    event.preventDefault();
+
     if (house_name_update === "") {
         swal({
             title: "Verifique el campo Nombre de la Casa",
@@ -618,7 +647,7 @@ function validar_update_house() {
             button: "Aceptar",
         }).then((result) => {
             if (result) {
-                document.form_update_house.submit();
+                document.form_house_update.submit();
             }
         });
     }
@@ -714,7 +743,7 @@ function validar_update_place() {
             button: "Aceptar",
         }).then((result) => {
             if (result) {
-                document.form_update_place.submit();
+                document.form_place_update.submit();
             }
         });
     }
@@ -983,10 +1012,10 @@ function validar_update_user() {
                 document.getElementById('user_phone_update').focus();
             });
     }
-    else if (user_phone_update.length < 5 || user_phone_update.length > 10) {
+    else if (user_phone_update.length < 5 || user_phone_update.length > 30) {
         swal({
             title: "Verifique el campo telefono",
-            text: "Los telefono debe contener entre 5 y 10 caracteres",
+            text: "el telefono debe contener entre 5 y 30 caracteres",
             icon: "error",
             button: "Aceptar",
         })
@@ -1021,22 +1050,38 @@ function validar_update_user() {
 
 
 //Funcion actualizar booking
-function validar_update_booking() {
+function validar_update_booking(event) {
     event.preventDefault();
-    booking_update_date = document.getElementById('booking_update_date').value;
-    cod_place = document.getElementById('cod_place').value;
-    cod_user = document.getElementById('cod_user').value;
+
+    // Obtener valores de los campos
+    let booking_update_date = document.getElementById('booking_update_date').value;
+    let cod_place = document.getElementById('cod_place').value;
+    let cod_user = document.getElementById('cod_user').value;
 
     // Patron validacion numérica
     let patron_numerico = /^[0-9]+$/;
 
+    // Obtener fecha actual en formato YYYY-MM-DD
+    let today = new Date().toISOString().split('T')[0]; // 'YYYY-MM-DD'
+
+    // Validación de fecha
     if (booking_update_date === "") {
         swal({
             title: "Verifique el campo fecha",
             text: "La fecha NO puede estar vacía",
             icon: "error",
             button: "Aceptar",
-        }).then((value) => {
+        }).then(() => {
+            document.getElementById('booking_update_date').focus();
+        });
+    }
+    else if (new Date(booking_update_date) < new Date(today)) {
+        swal({
+            title: "Fecha no válida",
+            text: "La fecha debe ser mas reciente",
+            icon: "error",
+            button: "Aceptar",
+        }).then(() => {
             document.getElementById('booking_update_date').focus();
         });
     }
@@ -1046,7 +1091,7 @@ function validar_update_booking() {
             text: "El lugar NO puede estar vacío",
             icon: "error",
             button: "Aceptar",
-        }).then((value) => {
+        }).then(() => {
             document.getElementById('cod_place').focus();
         });
     }
@@ -1056,7 +1101,7 @@ function validar_update_booking() {
             text: "El usuario NO puede estar vacío",
             icon: "error",
             button: "Aceptar",
-        }).then((value) => {
+        }).then(() => {
             document.getElementById('cod_user').focus();
         });
     }
@@ -1066,7 +1111,7 @@ function validar_update_booking() {
             text: "El codigo NO pueden contener letras o caracteres especiales",
             icon: "error",
             button: "Aceptar",
-        }).then((value) => {
+        }).then(() => {
             document.getElementById('cod_user').focus();
         });
     }
@@ -1076,7 +1121,7 @@ function validar_update_booking() {
             text: "El codigo debe contener entre 1 y 3 caracteres",
             icon: "error",
             button: "Aceptar",
-        }).then((value) => {
+        }).then(() => {
             document.getElementById('cod_user').focus();
         });
     }
