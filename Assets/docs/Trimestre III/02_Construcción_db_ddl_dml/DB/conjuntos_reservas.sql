@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `conjuntos_reservas`.`USERS` (
   `user_phone` VARCHAR(80) NOT NULL,
   `user_state` TINYINT NOT NULL,
   PRIMARY KEY (`cod_user`),
-  INDEX `FK_cod_house_idx` (`cod_house` ASC) ,
+  INDEX `FK_cod_house_idx` (`cod_house` ASC) VISIBLE,
   CONSTRAINT `FK_user_rol`
     FOREIGN KEY (`cod_rol`)
     REFERENCES `conjuntos_reservas`.`ROLES` (`cod_rol`)
@@ -87,8 +87,8 @@ CREATE TABLE IF NOT EXISTS `conjuntos_reservas`.`BOOKING` (
   `cod_place` INT NOT NULL,
   `booking_status` ENUM('approved', 'pending', 'rejected') NOT NULL DEFAULT 'pending',
   PRIMARY KEY (`cod_booking`),
-  INDEX `cod_user_idx` (`cod_user` ASC) ,
-  INDEX `cod_place_idx` (`cod_place` ASC) ,
+  INDEX `cod_user_idx` (`cod_user` ASC) VISIBLE,
+  INDEX `cod_place_idx` (`cod_place` ASC) VISIBLE,
   CONSTRAINT `cod_user`
     FOREIGN KEY (`cod_user`)
     REFERENCES `conjuntos_reservas`.`USERS` (`cod_user`)
@@ -158,8 +158,8 @@ CREATE TABLE IF NOT EXISTS `conjuntos_reservas`.`users` (
   `user_phone` VARCHAR(80) NOT NULL,
   `user_state` TINYINT(4) NOT NULL,
   PRIMARY KEY (`cod_user`),
-  INDEX `ind_user_house` (`cod_house` ASC) ,
-  INDEX `FK_user_rol` (`cod_rol` ASC) ,
+  INDEX `ind_user_house` (`cod_house` ASC) VISIBLE,
+  INDEX `FK_user_rol` (`cod_rol` ASC) VISIBLE,
   CONSTRAINT `FK_user_rol`
     FOREIGN KEY (`cod_rol`)
     REFERENCES `conjuntos_reservas`.`roles` (`cod_rol`)

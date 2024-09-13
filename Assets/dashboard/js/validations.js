@@ -473,25 +473,19 @@ function validar_user() {
     }
 }
 
-// Establecer la fecha mínima para el input de fecha
-document.addEventListener('DOMContentLoaded', function () {
-    let today = new Date().toISOString().split('T')[0];
-    document.getElementById('booking_date').setAttribute('min', today);
-});
-
 function validar_booking() {
     event.preventDefault();
 
     // Obtener valores de los campos
-    booking_date = document.getElementById('booking_date').value;
-    cod_place = document.getElementById('cod_place').value;
-    cod_user = document.getElementById('cod_user').value;
+    let booking_date = document.getElementById('booking_date').value;
+    let cod_place = document.getElementById('cod_place').value;
+    let cod_user = document.getElementById('cod_user').value;
 
     // Patron validacion numérica
     let patron_numerico = /^[0-9]+$/;
 
     // Obtener fecha actual en formato YYYY-MM-DD
-    let today = new Date().toISOString().split('T')[0];
+    let today = new Date().toISOString().split('T')[0]; // 'YYYY-MM-DD'
 
     if (booking_date === "") {
         swal({
@@ -506,7 +500,7 @@ function validar_booking() {
     else if (booking_date < today) {
         swal({
             title: "Fecha no válida",
-            text: "No se puede seleccionar una fecha anterior a hoy",
+            text: "Dia No Disponible, Escoje Una Fecha Mas Reciente",
             icon: "error",
             button: "Aceptar",
         }).then(() => {
