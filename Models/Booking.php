@@ -203,38 +203,38 @@ class Booking
         try {
             $bookingList = [];
             $sql = "SELECT 
-                    b.cod_booking,
-                    b.booking_date,
-                    u.cod_user,
-                    u.user_id,
-                    u.user_name,
-                    u.user_lastname,
-                    p.place_name,
-                    b.booking_status
-                FROM PLACES AS p
-                INNER JOIN BOOKING AS b ON p.cod_place = b.cod_place 
-                INNER JOIN USERS AS u ON u.cod_user = b.cod_user";
+                b.cod_booking,
+                b.booking_date,
+                u.cod_user,
+                u.user_id,
+                u.user_name,
+                u.user_lastname,
+                p.place_name,
+                p.cod_place, 
+                b.booking_status
+            FROM PLACES AS p
+            INNER JOIN BOOKING AS b ON p.cod_place = b.cod_place 
+            INNER JOIN USERS AS u ON u.cod_user = b.cod_user";
 
             $stmt = $this->dbh->query($sql);
-            if ($stmt === false) {
-                throw new Exception("Error en la ejecución de la consulta SQL");
-            }
             foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $booking) {
                 $bookingObj = new Booking(
-                    $booking['cod_booking'],
                     $booking['booking_date'],
+                    $booking['cod_booking'],
                     $booking['cod_user'],
-                    $booking['user_id'],
-                    $booking['user_name'],
-                    $booking['user_lastname'],
-                    $booking['place_name'],
+                    $booking['cod_place'],
                     $booking['booking_status']
                 );
+                $bookingObj->setUserId($booking['user_id']);
+                $bookingObj->setUserName($booking['user_name']);
+                $bookingObj->setUserLastName($booking['user_lastname']);
+                $bookingObj->setPlaceName($booking['place_name']);
                 $bookingList[] = $bookingObj;
             }
             return $bookingList;
         } catch (Exception $e) {
-            die("Error: " . $e->getMessage());
+            error_log("Error en read_booking: " . $e->getMessage());
+            throw $e; // Re-lanza la excepción para manejarla en el controlador
         }
     }
     public function getbooking_bycode($bookingCode)
@@ -282,24 +282,30 @@ class Booking
     {
         try {
             $sql = "UPDATE BOOKING SET
-                        booking_date = :bookingDate,
-                        cod_user = :codUser,
-                        cod_place = :codPlace,
-                        booking_status = :bookingStatus
-                    WHERE cod_booking = :bookingCode";
+                    booking_date = :bookingDate,
+                    cod_user = :codUser,
+                    cod_place = :codPlace,
+                    booking_status = :bookingStatus
+                WHERE cod_booking = :bookingCode";
 
             $stmt = $this->dbh->prepare($sql);
             $stmt->bindValue('bookingDate', $this->getBookingDate());
             $stmt->bindValue('codUser', $this->getUserCode());
             $stmt->bindValue('codPlace', $this->getPlaceCode());
             $stmt->bindValue('bookingStatus', $this->getBookingStatus());
-            $stmt->execute();
+            $stmt->bindValue('bookingCode', $this->getBookingCode()); // Añadido
+            $result = $stmt->execute();
+
+            if (!$result) {
+                throw new Exception("Error al actualizar la reserva");
+            }
+
+            return true; // Indica que la actualización fue exitosa
         } catch (Exception $e) {
-            // die($e->getMessage());
             error_log("Error en update_booking: " . $e->getMessage());
+            throw $e; // Re-lanza la excepción para manejarla en el controlador
         }
     }
-
     # RF12_CU12 - Eliminar Usuario
     public function delete_booking($bookingCode)
     {

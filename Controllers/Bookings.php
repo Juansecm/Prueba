@@ -102,12 +102,15 @@ class Bookings
                 );
 
                 try {
-                    $bookingUpdate->update_booking();
-                    //print_r($bookingUpdate);
-                    header("Location: ?c=bookings&a=bookingRead");
+                    if ($bookingUpdate->update_booking()) {
+                        header("Location: ?c=Bookings&a=bookingRead&updated=true");
+                        exit();
+                    } else {
+                        // Manejar el caso en que la actualización no fue exitosa
+                    }
                 } catch (Exception $e) {
-                    // Maneja el error, muestra un mensaje o guarda en los logs
                     error_log("Error en bookingUpdate: " . $e->getMessage());
+                    // Redirigir a una página de error o mostrar un mensaje al usuario
                     // Redirige o muestra un mensaje de error
                 }
             }
